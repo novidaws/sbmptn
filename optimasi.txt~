@@ -1,0 +1,20 @@
+Spesifikasi komputer yang dijalankan untuk menjalankan aplikasi adalah sbb:
+- OS = Ubuntu 14.04 LTS 64bit
+- Processor = Intel® Core™ i3-4005U CPU @ 1.70GHz × 4
+- Memory = 3.8 GiB
+
+Berikut merupakan langkah-langkah optimasi yang dapat dilakukan:
+1. Menambah spesifikasi komputer yang digunakan
+2. Menggunakan index pada tabel, dalam hal ini saya buat index sbb:
+		CREATE INDEX iPeserta
+		ON peserta (nomor)
+	Perbedaan performa dapat dilihat dari sbmptn_jmater_1.png yang tanpa menggunakan idexing ke sbmptn_jmeter_2.png dengan menggunakan indexing pada tabel peserta.
+	Kemudian, dengan cara yang sama index ditambahkan pada tabel result dan performa menjadi apa yang ada pada sbmptn_jmeter_3.png.
+	Terakhir, dengan cara yang sama index ditambahkan pada tabel prodi dan univ menjadi apa yang ada pada sbmptn_jmeter_4.png.
+	Hal ini karena index mengurutkan data dan melakukan Binary Search, daripada linear search pada tabel tanpa index, ia akan memangkas waktu penyeleksian data. Sumber (http://stackoverflow.com/questions/1108/how-does-database-indexing-work)
+
+3. Menggunakan join daripada sub query. Diberbagai literatur telah banyak dijumpai penelitian tentang hal ini, salah satunya adalah pada http://web.synametrics.com/top10performancetips.htm.
+
+4. Melakukan Projection atau seleksi hanya terhadap data-data yang dibutuhkan saja daripada menggunakan tanda bintang atau select all (*)
+	"select a, b, c from A" daripada "select * from A" agar tidak banyak data yang di-load ke memory.
+	

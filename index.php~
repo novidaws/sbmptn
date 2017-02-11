@@ -17,7 +17,7 @@
 		$sql .= "from peserta a ";
 		$sql .= "left join result b on a.nomor = b.nomor ";
 		$sql .= "inner join prodi c on b.kode_prodi = c.kode_prodi ";
-		$sql .= "inner join univ d on b.kode_univ = d.kode_univ where a.nomor = '".$nomorPeserta."'";
+		$sql .= "left join univ d on b.kode_univ = d.kode_univ where a.nomor = '".$nomorPeserta."'";
 	
 //echo $sql;
 		$result = mysql_query($sql);
